@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const links = [
   { name: "About", href: "/about" },
@@ -21,8 +22,10 @@ export function Navbar() {
         <div className="flex h-16 justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
-              <Button variant="link" className="text-xl font-bold p-0">
-                Jigyasu Patel
+              <Button variant="link" className="p-0 font-extrabold text-2xl">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-600">
+                  Jigyasu Patel
+                </span>
               </Button>
             </Link>
           </div>
@@ -39,10 +42,12 @@ export function Navbar() {
                 </Button>
               </Link>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"

@@ -9,8 +9,8 @@ interface PageWrapperProps {
 export function PageWrapper({ children }: PageWrapperProps) {
   return (
     <div className="min-h-screen relative">
-      <div className="absolute inset-0">
-        <Canvas camera={{ position: [0, 0, 5] }}>
+      <div className="absolute inset-0 pointer-events-none">
+        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
           <Suspense fallback={null}>
             <ambientLight intensity={0.5} />
             <SnowEffect />

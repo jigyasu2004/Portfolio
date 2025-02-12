@@ -19,25 +19,25 @@ export function SnowEffect() {
   const icePoints = useRef<THREE.Points>(null!);
   const { viewport, camera } = useThree();
   const mousePos = useRef(new THREE.Vector3());
-  
+
   // Create snowflakes
   const snowflakes = useMemo(() => {
     const temp: Snowflake[] = [];
-    const count = 500;
-    
+    const count = 1000; // Increased count for more visible snow
+
     for (let i = 0; i < count; i++) {
       temp.push({
         position: new THREE.Vector3(
-          (Math.random() - 0.5) * viewport.width * 2,
-          (Math.random() - 0.5) * viewport.height * 2 + viewport.height,
-          Math.random() * 2
+          (Math.random() - 0.5) * viewport.width * 3,
+          (Math.random() - 0.5) * viewport.height * 3 + viewport.height,
+          Math.random() * 3
         ),
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.05,
-          -0.1 - Math.random() * 0.1,
+          (Math.random() - 0.5) * 0.1,
+          -0.15 - Math.random() * 0.15,
           0
         ),
-        size: Math.random() * 2 + 1,
+        size: Math.random() * 3 + 1,
       });
     }
     return temp;
@@ -49,14 +49,17 @@ export function SnowEffect() {
   // Handle mouse movement
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
+      event.preventDefault();
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
-      mousePos.current.set(x * viewport.width, y * viewport.height, 0);
+      const vector = new THREE.Vector3(x, y, 0.5);
+      vector.unproject(camera);
+      mousePos.current.copy(vector);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: false });
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [viewport]);
+  }, [camera]);
 
   useFrame((state) => {
     if (!points.current || !icePoints.current) return;
@@ -66,12 +69,19 @@ export function SnowEffect() {
     const sizes = points.current.geometry.attributes.size;
 
     snowflakes.forEach((flake, i) => {
+      // Add some wind effect
+      flake.velocity.x += (Math.random() - 0.5) * 0.001;
       flake.position.add(flake.velocity);
 
       // Reset if snowflake goes below viewport
       if (flake.position.y < -viewport.height) {
         flake.position.y = viewport.height;
-        flake.position.x = (Math.random() - 0.5) * viewport.width * 2;
+        flake.position.x = (Math.random() - 0.5) * viewport.width * 3;
+      }
+
+      // Keep snowflakes within bounds
+      if (Math.abs(flake.position.x) > viewport.width * 1.5) {
+        flake.velocity.x *= -0.5;
       }
 
       positions.setXYZ(i, flake.position.x, flake.position.y, flake.position.z);
@@ -82,12 +92,12 @@ export function SnowEffect() {
     sizes.needsUpdate = true;
 
     // Add new ice crystals at mouse position
-    if (Math.random() > 0.9) {
+    if (Math.random() > 0.7) {
       icePoints_list.current.push({
         position: mousePos.current.clone().add(
           new THREE.Vector3(
-            (Math.random() - 0.5) * 0.5,
-            (Math.random() - 0.5) * 0.5,
+            (Math.random() - 0.5) * 0.8,
+            (Math.random() - 0.5) * 0.8,
             0
           )
         ),
@@ -101,17 +111,19 @@ export function SnowEffect() {
     const iceScales = icePoints.current.geometry.attributes.size;
     const iceOpacities = icePoints.current.geometry.attributes.opacity;
 
-    icePoints_list.current.forEach((ice, i) => {
-      ice.scale = Math.min(ice.scale + 0.1, 3);
-      ice.opacity = Math.max(ice.opacity - 0.005, 0);
+    // Update existing ice points
+    icePoints_list.current = icePoints_list.current.filter((ice, i) => {
+      ice.scale = Math.min(ice.scale + 0.2, 5); // Faster growth and larger size
+      ice.opacity = Math.max(ice.opacity - 0.003, 0); // Slower fade
 
-      icePositions.setXYZ(i, ice.position.x, ice.position.y, ice.position.z);
-      iceScales.setX(i, ice.scale);
-      iceOpacities.setX(i, ice.opacity);
+      if (i < 1000) { // Limit to prevent buffer overflow
+        icePositions.setXYZ(i, ice.position.x, ice.position.y, ice.position.z);
+        iceScales.setX(i, ice.scale);
+        iceOpacities.setX(i, ice.opacity);
+      }
+
+      return ice.opacity > 0;
     });
-
-    // Remove faded ice crystals
-    icePoints_list.current = icePoints_list.current.filter(ice => ice.opacity > 0);
 
     icePositions.needsUpdate = true;
     iceScales.needsUpdate = true;
@@ -136,13 +148,12 @@ export function SnowEffect() {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.1}
+          size={0.15}
           sizeAttenuation={true}
           color="#ffffff"
           transparent
           opacity={0.8}
-          alphaMap={new THREE.TextureLoader().load("/snowflake.png")}
-          blending={THREE.AdditiveBlending}
+          depthWrite={false}
         />
       </points>
       <points ref={icePoints}>
@@ -167,12 +178,12 @@ export function SnowEffect() {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.2}
+          size={0.3}
           sizeAttenuation={true}
           color="#a8d5ff"
           transparent
           opacity={0.6}
-          alphaMap={new THREE.TextureLoader().load("/ice.png")}
+          depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
       </points>

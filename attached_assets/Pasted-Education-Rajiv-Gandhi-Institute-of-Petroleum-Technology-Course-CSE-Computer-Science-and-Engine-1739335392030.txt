@@ -1,0 +1,53 @@
+Education:
+
+Rajiv Gandhi Institute of Petroleum Technology
+Course: CSE - Computer Science and Engineering (2022–2026)
+CGPA: 7.65 (till 4th semester)
+Aryan International School
+Class 12th (CBSE): Percentage: 81.20 (2021)
+Shivchanran Smarak Intermediate College
+Class 10th (U.P. Board): Percentage: 82.50 (2019)
+Skills:
+
+Operating Systems: Windows, Linux
+Programming Languages: C, Python
+Web Technologies: HTML5, CSS, JavaScript, React, ExpressJS, NodeJS
+Database Management Systems: MySQL, MongoDB
+Libraries & Tools: Numpy, Pandas, Seaborn, Matplotlib, Tensorflow, Scikit-learn, Pillow, OpenCV
+Additional Expertise:
+Machine Learning Algorithms, Deep Neural Networks, Data Science, Federated Learning, Computer Vision, Cyber Security (SIEM, IDM)
+RGIPT Coursework: Web Development, Database, Data Mining, Data Structures and Algorithms, Artificial Intelligence, Deep Learning, Software Development, Operating Systems
+Projects:
+
+Doctor ROBO (Medical Kiosk):
+Repository: https://github.com/jigyasu2004/Doctor-Robo.git
+Description: Developed for the IIT Mandi Hackathon. An Android app that diagnoses diseases and provides precautions based on symptoms. Responsible for creating the ML model and integrating it into the app via an API.
+e-Librarian (Library Management System):
+Repository: https://github.com/jigyasu2004/web_project_eLibrarian.git
+Description: A comprehensive library management system developed as a college project using the MERN stack.
+Data Science Course Projects:
+Repository: https://github.com/jigyasu2004/Data_science_course_project.git
+Description: Projects completed during the Python for Data Science and Machine Learning Bootcamp by Jose Portilla, Pierian Training.
+Machine Learning Course Projects:
+Repository: https://github.com/jigyasu2004/ML_course_project.git
+Description: Additional projects from the Python for Data Science and Machine Learning Bootcamp by Jose Portilla, Pierian Training.
+Achievements:
+
+CFG Hackathon 2023:
+Description: Led the team to win at IIT Mandi.
+Certificate/Proof: https://drive.google.com/file/d/1aSJOu9uM2YQD_WTQJ5UlC0RRxRuReRIZ/view?usp=sharing
+IIT Bombay HERE Hackathon 2023:
+Description: Finalist.
+Certificate/Proof: https://drive.google.com/file/d/1XZKqRPMTzOMDzXhAHlA3VcLjB8Id7PpS/view?usp=sharing
+Certifications:
+Google Cybersecurity Professional Certificate: https://www.coursera.org/account/accomplishments/specialization/P83XXESWEWSE?utm_source=android&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=s12n
+IBM Certificate in Computer Vision and Image Processing: https://www.coursera.org/account/accomplishments/verify/D5VFW37FO4KW?utm_source=android&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course
+FreeCodeCamp Certificate in Scientific Computing with Python: https://freecodecamp.org/certification/jigyasu2004/scientific-computing-with-python-v7
+Udemy Certificate in Python for Data Science and Machine Learning Bootcamp: https://www.udemy.com/certificate/UC-f78b19ca-9832-4589-b4b7-966d68987092/
+Additional Achievement: Qualified in Jee Advanced with a rank in the top 2% percentile.
+Extra-Curricular Activities:
+
+Volunteer Work:
+Contributed with Gyanarpan, an RGIPT social organization dedicated to educating underprivileged students and promoting educational equity.
+Leadership:
+Coordinator for the ST Council Program Team

@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { ComputerModel } from "../canvas/ComputerModel";
 import { Stars } from "../canvas/Stars";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export function Hero() {
   return (
@@ -29,12 +30,12 @@ export function Hero() {
               digital experiences
             </p>
             <div className="space-x-4">
-              <Button asChild>
-                <a href="#projects">View My Work</a>
-              </Button>
-              <Button variant="outline" asChild>
-                <a href="#contact">Contact Me</a>
-              </Button>
+              <Link href="/projects">
+                <Button>View My Work</Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="outline">Contact Me</Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export function SnowEffect() {
   // Create snowflakes
   const snowflakes = useMemo(() => {
     const temp: Snowflake[] = [];
-    const count = 1000; // Increased count for more visible snow
+    const count = 1000;
 
     for (let i = 0; i < count; i++) {
       temp.push({
@@ -33,11 +33,11 @@ export function SnowEffect() {
           Math.random() * 3
         ),
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.1,
-          -0.15 - Math.random() * 0.15,
+          (Math.random() - 0.5) * 0.02, // Reduced horizontal velocity
+          -0.05 - Math.random() * 0.05, // Reduced falling speed
           0
         ),
-        size: Math.random() * 3 + 1,
+        size: Math.random() * 1 + 0.5, // Smaller snowflakes
       });
     }
     return temp;
@@ -69,8 +69,8 @@ export function SnowEffect() {
     const sizes = points.current.geometry.attributes.size;
 
     snowflakes.forEach((flake, i) => {
-      // Add some wind effect
-      flake.velocity.x += (Math.random() - 0.5) * 0.001;
+      // Add subtle wind effect
+      flake.velocity.x += (Math.random() - 0.5) * 0.0002; // Reduced wind effect
       flake.position.add(flake.velocity);
 
       // Reset if snowflake goes below viewport
@@ -111,12 +111,11 @@ export function SnowEffect() {
     const iceScales = icePoints.current.geometry.attributes.size;
     const iceOpacities = icePoints.current.geometry.attributes.opacity;
 
-    // Update existing ice points
     icePoints_list.current = icePoints_list.current.filter((ice, i) => {
-      ice.scale = Math.min(ice.scale + 0.2, 5); // Faster growth and larger size
-      ice.opacity = Math.max(ice.opacity - 0.003, 0); // Slower fade
+      ice.scale = Math.min(ice.scale + 0.2, 5);
+      ice.opacity = Math.max(ice.opacity - 0.003, 0);
 
-      if (i < 1000) { // Limit to prevent buffer overflow
+      if (i < 1000) {
         icePositions.setXYZ(i, ice.position.x, ice.position.y, ice.position.z);
         iceScales.setX(i, ice.scale);
         iceOpacities.setX(i, ice.opacity);
@@ -148,11 +147,11 @@ export function SnowEffect() {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.15}
+          size={0.08} // Smaller point size
           sizeAttenuation={true}
           color="#ffffff"
           transparent
-          opacity={0.8}
+          opacity={0.6} // Slightly reduced opacity
           depthWrite={false}
         />
       </points>
@@ -178,7 +177,7 @@ export function SnowEffect() {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.3}
+          size={0.2}
           sizeAttenuation={true}
           color="#a8d5ff"
           transparent

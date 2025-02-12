@@ -5,7 +5,6 @@ import { useState } from "react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const links = [
-  { name: "About", href: "/about" },
   { name: "Skills", href: "/skills" },
   { name: "Projects", href: "/projects" },
   { name: "Achievements", href: "/achievements" },

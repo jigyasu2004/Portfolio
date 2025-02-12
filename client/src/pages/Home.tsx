@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { About } from "@/components/sections/About";
 import { PageWrapper } from "@/components/layout/PageWrapper";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero />
+          <About />
         </main>
       </div>
     </PageWrapper>

@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Stars } from "../canvas/Stars";
 
 const skills = [
   {
@@ -23,6 +26,16 @@ const skills = [
 export function Skills() {
   return (
     <section className="min-h-[calc(100vh-4rem)] pt-20 bg-muted/50">
+      <div className="absolute inset-0 -z-10">
+        <Canvas camera={{ position: [0, 0, 5] }}>
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.5} />
+            <pointLight position={[10, 10, 10]} />
+
+            <Stars />
+          </Suspense>
+        </Canvas>
+      </div>       
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8 text-center">Skills & Expertise</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

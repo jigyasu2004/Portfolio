@@ -19,11 +19,12 @@ export function Contact() {
           </Suspense>
         </Canvas>
       </div>      
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-1 min-h-screen pt-8">
         <h2 className="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
+        <div className="text-white p-6 h-96">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card>
-            <CardContent className="p-6">
+          <Card className="items-center justify-center">
+            <CardContent className="p-6 ">
               <form className="space-y-4">
                 <div>
                   <Input placeholder="Your Name" />
@@ -39,7 +40,7 @@ export function Contact() {
             </CardContent>
           </Card>
 
-          <div className="space-y-6">
+          <div className="flex flex-col items-center space-y-6 text-center">
             <div>
               <h3 className="text-xl font-semibold mb-4">Connect With Me</h3>
               <div className="space-y-4">
@@ -71,6 +72,7 @@ export function Contact() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

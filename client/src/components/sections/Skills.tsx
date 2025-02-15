@@ -6,32 +6,71 @@ import { Stars } from "../canvas/Stars";
 
 const skills = [
   {
-    category: "Programming Languages & Web Technologies",
-    items: ["C", "Python", "HTML5", "CSS", "JavaScript", "React", "ExpressJS", "NodeJS"],
+    category: "Operating Systems",
+    items: ["Windows", "Linux"],
   },
   {
-    category: "Data Science & ML",
-    items: ["Numpy", "Pandas", "Seaborn", "Matplotlib", "TensorFlow", "Scikit-learn", "Computer Vision", "Federated Learning"],
+    category: "Programming Languages",
+    items: ["C", "Python"],
   },
   {
-    category: "Databases & Tools",
-    items: ["MySQL", "MongoDB", "OpenCV", "Git", "Windows", "Linux", "SIEM", "IDM"],
+    category: "Web Technologies",
+    items: ["HTML5", "CSS", "JavaScript", "React", "ExpressJS", "NodeJS"],
   },
   {
-    category: "Coursework",
-    items: ["Data Structures", "Algorithms", "AI", "Deep Learning", "Operating Systems", "Database Management", "Web Development"],
-  }
+    category: "Database Management Systems",
+    items: ["MySQL", "MongoDB"],
+  },
+  {
+    category: "Libraries",
+    items: [
+      "Numpy",
+      "Pandas",
+      "Seaborn",
+      "Matplotlib",
+      "Tensorflow",
+      "Scikit-learn",
+      "Pillow",
+      "OpenCV",
+    ],
+  },
+  {
+    category: "Others",
+    items: [
+      "Machine Learning Algorithms",
+      "Web Development",
+      "Deep Neural Network",
+      "Data Science",
+      "Federated Learning",
+      "Computer Vision",
+      "Cyber Security",
+      "SIEM",
+      "IDM",
+    ],
+  },
+  {
+    category: "RGIPT Coursework",
+    items: [
+      "Web Development",
+      "Database",
+      "Data Mining",
+      "Data Structures and Algorithms",
+      "Artificial Intelligence",
+      "Deep Learning",
+      "Software Development",
+      "Operating Systems",
+    ],
+  },
 ];
 
 export function Skills() {
   return (
-    <section className="min-h-[calc(100vh-4rem)] pt-20 bg-muted/50">
+    <section className="py-24 relative z-10">
       <div className="absolute inset-0 -z-10">
         <Canvas camera={{ position: [0, 0, 5] }}>
           <Suspense fallback={null}>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
-
             <Stars />
           </Suspense>
         </Canvas>

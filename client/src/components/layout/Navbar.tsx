@@ -1,8 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useState, useEffect } from "react";
 
 const links = [
   { name: "Skills", href: "/skills" },
@@ -10,6 +9,30 @@ const links = [
   { name: "Achievements", href: "/achievements" },
   { name: "Contact", href: "/contact" },
 ];
+
+export function ThemeToggle() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark"; // Default mode is dark
+  });
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  return (
+    <Button
+      variant="ghost"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    >
+      {theme === "dark" ? "🔆 Light Mode" : "🌙 Dark Mode"}
+    </Button>
+  );
+}
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,7 +52,7 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop menu */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center md:space-x-6">
             {links.map((link) => (
               <Link key={link.name} href={link.href}>
@@ -44,7 +67,7 @@ export function Navbar() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
             <Button
@@ -62,7 +85,7 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden">
           <div className="space-y-1 px-4 pb-3 pt-2">
